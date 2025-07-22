@@ -4,7 +4,7 @@ import axios from 'axios';
 const MovieCard = ({ movie }) => {
   const handleSave = async () => {
     try {
-      await axios.post('http://localhost:5000/api/movies/save', {
+      await axios.post('${process.env.REACT_APP_API_URL}/api/movies/save', {
         title: movie.title,
         overview: movie.overview,
         poster_path: movie.poster_path,

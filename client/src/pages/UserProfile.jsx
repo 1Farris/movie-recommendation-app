@@ -11,7 +11,7 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await fetch('https://movie-backend-epcf.onrender.com/api/auth/profile', {
+        const res = await fetch('${process.env.REACT_APP_API_URL}api/auth/profile', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -32,7 +32,7 @@ const UserProfile = () => {
 
   const handleUpdateProfile = async () => {
     try {
-      const res = await fetch('https://movie-backend-epcf.onrender.com/api/auth/profile', {
+      const res = await fetch('${process.env.REACT_APP_API_URL}/api/auth/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

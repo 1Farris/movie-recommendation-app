@@ -9,7 +9,7 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
-      const res = await axios.post('https://movie-backend-epcf.onrender.com/api/auth/register', {
+      const res = await axios.post('${process.env.REACT_APP_API_URL}/api/auth/register', {
         username,
         password,
       });

@@ -8,7 +8,7 @@ const MyReviewsPage = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const res = await fetch('https://movie-backend-epcf.onrender.com/api/reviews/my', {
+        const res = await fetch('${process.env.REACT_APP_API_URL}/api/reviews/my', {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error('Failed to fetch your reviews');

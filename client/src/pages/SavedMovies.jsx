@@ -14,7 +14,7 @@ const SavedMovies = () => {
     }
 
     try {
-      const response = await fetch('https://movie-backend-epcf.onrender.com/api/movies/saved', {
+      const response = await fetch('${process.env.REACT_APP_API_URL}/api/movies/saved', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -42,7 +42,7 @@ const SavedMovies = () => {
     if (!window.confirm('Are you sure you want to delete this movie?')) return;
 
     try {
-      const response = await fetch(`https://movie-backend-epcf.onrender.com/api/movies/delete/${id}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/movies/delete/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,

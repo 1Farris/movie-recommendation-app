@@ -19,7 +19,7 @@ const SearchPage = () => {
     const fetchWatchlists = async () => {
       if (!token) return;
       try {
-        const res = await fetch('https://movie-backend-epcf.onrender.com/api/watchlists', {
+        const res = await fetch('${process.env.REACT_APP_API_URL}/api/watchlists', {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -44,7 +44,7 @@ const SearchPage = () => {
         rating,
         sortBy,
       });
-      const res = await fetch(`https://movie-backend-epcf.onrender.com/api/movies/discover?${queryParams}`);
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/movies/discover?${queryParams}`);
       if (!res.ok) throw new Error('Failed to fetch movies');
       const data = await res.json();
       setResults(data.results || []);
@@ -61,7 +61,7 @@ const SearchPage = () => {
       return;
     }
     try {
-      const res = await fetch('https://movie-backend-epcf.onrender.com/api/movies/save', {
+      const res = await fetch('${process.env.REACT_APP_API_URL}/api/movies/save', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ const SearchPage = () => {
     let savedMovie;
 
     try {
-      const saveRes = await fetch('https://movie-backend-epcf.onrender.com/api/movies/save', {
+      const saveRes = await fetch('${process.env.REACT_APP_API_URL}/api/movies/save', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ const SearchPage = () => {
       if (saveRes.ok) {
         savedMovie = saveData.movie || saveData;
       } else if (saveData.error === 'Movie already saved in Favorites') {
-        const fetchRes = await fetch(`https://movie-backend-epcf.onrender.com/api/movies/${movie.id}`, {
+        const fetchRes = await fetch(`${process.env.REACT_APP_API_URL}/api/movies/${movie.id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const fetchedData = await fetchRes.json();
@@ -127,7 +127,7 @@ const SearchPage = () => {
       }
 
       const assignRes = await fetch(
-        `https://movie-backend-epcf.onrender.com/api/watchlists/${encodeURIComponent(listName)}/add`,
+        `${process.env.REACT_APP_API_URL}/api/watchlists/${encodeURIComponent(listName)}/add`,
         {
           method: 'POST',
           headers: {
@@ -164,7 +164,7 @@ const SearchPage = () => {
     }
 
     try {
-      const res = await fetch('https://movie-backend-epcf.onrender.com/api/reviews', {
+      const res = await fetch('${process.env.REACT_APP_API_URL}/api/reviews', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

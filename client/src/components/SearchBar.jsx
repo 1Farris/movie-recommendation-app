@@ -9,7 +9,7 @@ const SearchBar = () => {
 
   const searchMovies = async () => {
     try {
-      const res = await axios.get(`https://movie-backend-epcf.onrender.com/api/movies/search?query=${query}`);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/movies/search?query=${query}`);
       setMovies(res.data.results);
       setError('');
     } catch (err) {

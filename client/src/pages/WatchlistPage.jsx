@@ -11,7 +11,7 @@ const WatchlistPage = () => {
   // ✅ Fetch watchlists (memoized)
   const fetchWatchlists = useCallback(async () => {
     try {
-      const res = await fetch('https://movie-backend-epcf.onrender.com/api/watchlists', {
+      const res = await fetch('${process.env.REACT_APP_API_URL}/api/watchlists', {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error('Failed to load watch‑lists');
@@ -38,7 +38,7 @@ const WatchlistPage = () => {
       return;
     }
     try {
-      const res = await fetch('https://movie-backend-epcf.onrender.com/api/watchlists/create', {
+      const res = await fetch('${process.env.REACT_APP_API_URL}/api/watchlists/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ const WatchlistPage = () => {
     if (!window.confirm('Remove this movie from the list?')) return;
     try {
       const res = await fetch(
-        `https://movie-backend-epcf.onrender.com/api/watchlists/${encodeURIComponent(
+        `${process.env.REACT_APP_API_URL}/api/watchlists/${encodeURIComponent(
           listName
         )}/remove/${movieMongoId}`,
         {
@@ -87,7 +87,7 @@ const WatchlistPage = () => {
   const handleDeleteWatchlist = async (name) => {
   if (!window.confirm(`Delete the list "${name}"?`)) return;
   try {
-    const res = await fetch(`https://movie-backend-epcf.onrender.com/api/watchlists/${encodeURIComponent(name)}`, {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/watchlists/${encodeURIComponent(name)}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
     });
